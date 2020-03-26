@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>kjp的博客</title>
+  <title>算法复习之排序5--堆排序 | kjp的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="kjp的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="理解若要从小到大排序。把数组以二叉树的形式进行观察，开始时，遍布每个非叶子结点，将二叉树变成每个非叶子结点都比其子节点大的状态，得出二叉树里最大的结点（此时的二叉树也实现了），而后把最大的结点与未确定的最后一个结点交换，接着重新排序得出第二大结点，如此重复直到排序完成">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法复习之排序5--堆排序">
+<meta property="og:url" content="http://yoursite.com/2020/03/26/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F5--%E5%A0%86%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="kjp的博客">
+<meta property="og:description" content="理解若要从小到大排序。把数组以二叉树的形式进行观察，开始时，遍布每个非叶子结点，将二叉树变成每个非叶子结点都比其子节点大的状态，得出二叉树里最大的结点（此时的二叉树也实现了），而后把最大的结点与未确定的最后一个结点交换，接着重新排序得出第二大结点，如此重复直到排序完成">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-26T15:35:00.000Z">
+<meta property="article:modified_time" content="2020-03-26T15:35:49.279Z">
 <meta property="article:author" content="风色的花">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="kjp的博客" type="application/atom+xml">
@@ -142,16 +148,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-算法复习之排序5--堆排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-算法复习之排序5--堆排序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/26/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F5--%E5%A0%86%E6%8E%92%E5%BA%8F/">算法复习之排序5--堆排序</a>
+    <h1 class="article-title" itemprop="name">
+      算法复习之排序5--堆排序
     </h1>
   
 
@@ -165,9 +169,43 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>若要从小到大排序。把数组以二叉树的形式进行观察，开始时，遍布每个非叶子结点，将二叉树变成每个非叶子结点都比其子节点大的状态，得出二叉树里最大的结点（此时的二叉树也实现了），而后把最大的结点与未确定的最后一个结点交换，接着重新排序得出第二大结点，如此重复直到排序完成</p>
-        
+<a id="more"></a>
+
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>现假设对数组nums进行插入排序，从小到大</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HeapSort</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortnums</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">//length/2-1得出的是第一个非叶子节点的数组下标</span></span><br><span class="line">		<span class="comment">//由于开始时数组为完全杂乱的，故需要把全部非叶子节点都确认位置</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=(nums.length)/<span class="number">2</span>-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">		&#123;</span><br><span class="line">			heap(nums, nums.length, i);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//将最大的节点放在堆尾</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=nums.length-<span class="number">1</span>;i&gt;<span class="number">0</span>;i--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//nums[0]为根，即当前最大的数</span></span><br><span class="line">			<span class="comment">//nums[i]为堆尾</span></span><br><span class="line">			<span class="comment">//此处交换</span></span><br><span class="line">			<span class="keyword">int</span> temp=nums[<span class="number">0</span>];</span><br><span class="line">			nums[<span class="number">0</span>]=nums[i];</span><br><span class="line">			nums[i]=temp;</span><br><span class="line">			</span><br><span class="line">			<span class="comment">//由于交换后根出现了变化，要重新选出最大值（存在于其两个子节点中），还要为根寻找该放的位置</span></span><br><span class="line">			heap(nums, i, <span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//nums为数组，len为当前未排序数组长度，i为需要确定位置的元素的下标</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">heap</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> len,<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">//i_sub为i的下标，i_val为i的值，child_max用于确定子节点中较大者的下标</span></span><br><span class="line">		<span class="comment">//此处由于初始化，child_max初始化为待确定位置元素的左子节点（右节点不一定存在）</span></span><br><span class="line">		<span class="keyword">int</span> i_sub=i,i_val=nums[i],child_max=<span class="number">2</span>*i_sub+<span class="number">1</span>;</span><br><span class="line">		<span class="comment">//由于child_max仍小于len，则证明child_max仍存在且未排序</span></span><br><span class="line">		<span class="keyword">while</span>(child_max&lt;len)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(child_max+<span class="number">1</span>&lt;len)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//若右子节点存在且大于左节点，则较大子节点为右子节点</span></span><br><span class="line">				<span class="keyword">if</span>(nums[child_max]&lt;nums[child_max+<span class="number">1</span>])</span><br><span class="line">				&#123;</span><br><span class="line">					child_max++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//若较大子节点大于其父节点，子节点理所当然代替父节点位置</span></span><br><span class="line">			<span class="keyword">if</span>(nums[child_max]&gt;i_val)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="comment">//由于父节点的值放在i_val中所以节省了把nums[child_max]赋值的过程，只需与i_val对比即可</span></span><br><span class="line">				nums[i_sub]=nums[child_max];</span><br><span class="line">				<span class="comment">//此处表示i点到了较大节点的位置，但此时nums[i_sub]的值并非为i_val，因为上面步骤省略了赋值，但凡与nums[i_sub]对比的转换为与i_val对比</span></span><br><span class="line">				i_sub=child_max;</span><br><span class="line">				child_max=<span class="number">2</span>*i_sub+<span class="number">1</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">//由于初始化时是自下而上进行的，所以若出现父节点大于两个（或仅剩一个）子节点的情况，则表示此父节点为这一分支的最大值（因为其子节点是其子节点分支的最大值且其大于其子节点）</span></span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//确定i点的位置的值</span></span><br><span class="line">		<span class="comment">//因为前面省略了赋值，此处已是函数末尾，故补上赋值，确保数组元素完整</span></span><br><span class="line">		nums[i_sub]=i_val;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢打赏<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/Alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -191,16 +229,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/26/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F5--%E5%A0%86%E6%8E%92%E5%BA%8F/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/26/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F5--%E5%A0%86%E6%8E%92%E5%BA%8F/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/03/25/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F6--%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">软件设计模式6--原型模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -215,719 +312,35 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-软件设计模式6--原型模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/25/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F6--%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">软件设计模式6--原型模式</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/25/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F6--%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-25T08:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动机和定义"><a href="#动机和定义" class="headerlink" title="动机和定义"></a>动机和定义</h2><p>在软件系统中，有时需要多次创建某一类型的对象，为简化创建过程，可只创建一个对象，然后通过克隆的方式复制出多个相同的对象</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">创建型模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/25/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F6--%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解"><span class="toc-number">1.</span> <span class="toc-text">理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">2.</span> <span class="toc-text">代码</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-软件设计模式5--单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/24/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F5--%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">软件设计模式5--单例模式</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/24/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F5--%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-24T09:03:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动机和定义"><a href="#动机和定义" class="headerlink" title="动机和定义"></a>动机和定义</h2><p>在某些时候，资源只能有一个，如一个系统只能有一个窗口管理器，若有多个窗口管理器且内容一致，则浪费系统资源，若显示内容不一致则代表系统有多个状态，与实际不符，会导致混乱。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">创建型模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/24/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F5--%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-软件设计模式4--建造者模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/24/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F4--%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">软件设计模式4--建造者模式</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/24/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F4--%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-24T08:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动机和定义"><a href="#动机和定义" class="headerlink" title="动机和定义"></a>动机和定义</h2><p>用于创建一个包含多个组成部分的复杂对象，可以返回一个完整的产品对象给用户。对用户而言，创建过程和内部组成是无需知道的。建造者模式关注该复杂对象如何创建而成。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">创建型模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/24/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F4--%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-软件设计模式3--抽象工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F3--%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">软件设计模式3--抽象工厂模式</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F3--%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-23T09:45:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动机和定义"><a href="#动机和定义" class="headerlink" title="动机和定义"></a>动机和定义</h2><p>抽象工厂模式是工厂方法模式的泛化版，工厂方法模式是一种特殊的抽象工厂模式，在抽象工厂方法中，一个具体工厂可以生产多个具体产品</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">创建型模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F3--%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-软件设计模式2--工厂方法模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F2--%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/">软件设计模式2--工厂方法模式</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F2--%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-23T08:33:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动机和定义"><a href="#动机和定义" class="headerlink" title="动机和定义"></a>动机和定义</h2><p>在简单工程模式中，所有产品由同一个工厂创建，工厂类职责过重，业务逻辑复杂度高，具体产品与工厂类耦合度高，影响了系统的灵活性和扩展性。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">创建型模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F2--%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-软件设计模式1--简单工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F1--%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">软件设计模式1--简单工厂模式</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F1--%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-23T07:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="动机和定义"><a href="#动机和定义" class="headerlink" title="动机和定义"></a>动机和定义</h2><p>在实际的软件开发过程中，需要创建一些来自于同一父类的类的实例，故专门定义一个类来负责创建这些类的实例</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">创建型模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F1--%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-算法复习之排序4--冒泡排序 - 副本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F4--%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%20-%20%E5%89%AF%E6%9C%AC/">算法复习之排序4--冒泡排序</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F4--%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%20-%20%E5%89%AF%E6%9C%AC/" class="archive-article-date">
-  	<time datetime="2020-03-22T07:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="经典冒泡排序"><a href="#经典冒泡排序" class="headerlink" title="经典冒泡排序"></a>经典冒泡排序</h1><h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>一遍又一遍地把数组从头开始，把相邻的元素作对比，做相应的替换</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F4--%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%20-%20%E5%89%AF%E6%9C%AC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-算法复习之排序3--选择排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F3--%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">算法复习之排序3--选择排序</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F3--%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-03-22T06:49:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>若从小到大排序，则寻找数组中最小的元素与数组第一位互换位置，然后寻找第二小元素，与数组第二位互换位置</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F3--%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-算法复习之排序2--快速排序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F2--%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">算法复习之排序2--快速排序</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F2--%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-03-21T14:48:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>选取数组中一个元素作为基准点，让数组中的其他元素与其比较大小，分别放在其两边，然后把两边的子序列重复以上排序，直至子序列剩一个元素（把选中的基准放在应该在的位置）</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F2--%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
 
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -956,8 +369,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
