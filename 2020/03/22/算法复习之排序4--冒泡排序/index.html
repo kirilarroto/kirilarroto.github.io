@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>算法复习之排序1--插入排序 | kjp的博客</title>
+  <title>算法复习之排序4--冒泡排序 | kjp的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="理解把需要排序的数组按逐个抽出，-插入-到新的数组中，-插入-时需按照顺序插入到对应位置">
+  <meta name="description" content="经典冒泡排序理解一遍又一遍地把数组从头开始，把相邻的元素作对比，做相应的替换">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法复习之排序1--插入排序">
-<meta property="og:url" content="http://yoursite.com/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F1--%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:title" content="算法复习之排序4--冒泡排序">
+<meta property="og:url" content="http://yoursite.com/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F4--%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/index.html">
 <meta property="og:site_name" content="kjp的博客">
-<meta property="og:description" content="理解把需要排序的数组按逐个抽出，-插入-到新的数组中，-插入-时需按照顺序插入到对应位置">
+<meta property="og:description" content="经典冒泡排序理解一遍又一遍地把数组从头开始，把相邻的元素作对比，做相应的替换">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-03-21T09:42:59.000Z">
-<meta property="article:modified_time" content="2020-03-27T12:57:35.649Z">
+<meta property="article:published_time" content="2020-03-22T07:10:00.000Z">
+<meta property="article:modified_time" content="2020-03-27T12:58:37.884Z">
 <meta property="article:author" content="风色的花">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="排序">
@@ -148,32 +148,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-算法复习之排序1--插入排序" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-算法复习之排序4--冒泡排序" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      算法复习之排序1--插入排序
+      算法复习之排序4--冒泡排序
     </h1>
   
 
         
-        <a href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F1--%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-03-21T09:42:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
+        <a href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F4--%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="archive-article-date">
+  	<time datetime="2020-03-22T07:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>把需要排序的数组按逐个抽出，-插入-到新的数组中，-插入-时需按照顺序插入到对应位置</p>
+        <h1 id="经典冒泡排序"><a href="#经典冒泡排序" class="headerlink" title="经典冒泡排序"></a>经典冒泡排序</h1><h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>一遍又一遍地把数组从头开始，把相邻的元素作对比，做相应的替换</p>
 <a id="more"></a>
 
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>现假设对数组nums进行插入排序，从小到大</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InertionSort</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Sortnum</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//默认第一个是有序的</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;nums.length;i++)</span><br><span class="line">        &#123;</span><br><span class="line">        	<span class="keyword">int</span> temp</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&gt;<span class="number">0</span>;j--)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[j]&lt;nums[j-<span class="number">1</span>])</span><br><span class="line">                &#123;</span><br><span class="line">                    temp=nums[j];</span><br><span class="line">                    nums[j]=nums[j-<span class="number">1</span>];</span><br><span class="line">                    nums[j-<span class="number">1</span>]=temp;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>现假设对数组nums进行冒泡排序，从小到大</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BubbleSort</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortnums</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">		<span class="comment">//temp为中间值，方便替换用</span></span><br><span class="line">    	<span class="keyword">int</span> temp;</span><br><span class="line">    			</span><br><span class="line">    	<span class="comment">//遍历数组</span></span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)</span><br><span class="line">    	&#123;</span><br><span class="line">    		<span class="comment">//遍历数组，到未确定位置的最后一位结束</span></span><br><span class="line">    	    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;nums.length-i-<span class="number">1</span>;j++)</span><br><span class="line">    	    &#123;</span><br><span class="line">    	    	<span class="keyword">if</span>(nums[j]&gt;nums[j+<span class="number">1</span>])</span><br><span class="line">    	    	&#123;</span><br><span class="line">    	    		<span class="comment">//替换</span></span><br><span class="line">    	    		temp=nums[j];</span><br><span class="line">    	    		nums[j]=nums[j+<span class="number">1</span>];</span><br><span class="line">    	    		nums[j+<span class="number">1</span>]=temp;</span><br><span class="line">    	    	&#125;</span><br><span class="line">    	    &#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h1 id="双向冒泡排序"><a href="#双向冒泡排序" class="headerlink" title="双向冒泡排序"></a>双向冒泡排序</h1><h2 id="理解-1"><a href="#理解-1" class="headerlink" title="理解"></a>理解</h2><p>在经典冒泡排序的基础上加上两个信标以记录完成排序的部分，并从两端同时开始进行冒泡，提高效率</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><p>现假设对数组nums进行双向冒泡排序，从小到大</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubleBubbleSort</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sortnums</span><span class="params">(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> lo,<span class="keyword">int</span> hi)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//temp为中间值方便替换，left和right为左右信标</span></span><br><span class="line">    	<span class="keyword">int</span> temp;</span><br><span class="line">    	<span class="keyword">int</span> left=<span class="number">0</span>;</span><br><span class="line">    	<span class="keyword">int</span> right=nums.length-<span class="number">1</span>;</span><br><span class="line">    	<span class="comment">//只要left和right不重合，就继续遍历</span></span><br><span class="line">    	<span class="keyword">while</span>(left&lt;right)</span><br><span class="line">    	&#123;</span><br><span class="line">    		<span class="comment">//从left遍历到right的前一个元素，遍历到的元素与后面的元素对比，大的元素往后推</span></span><br><span class="line">    		<span class="keyword">for</span>(<span class="keyword">int</span> i=left;i&lt;right;i++)</span><br><span class="line">    		&#123;</span><br><span class="line">    			<span class="keyword">if</span>(nums[i]&gt;nums[i+<span class="number">1</span>])</span><br><span class="line">    			&#123;</span><br><span class="line">    				temp=nums[i];</span><br><span class="line">    				nums[i]=nums[i+<span class="number">1</span>];</span><br><span class="line">    				nums[i+<span class="number">1</span>]=temp;</span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125;</span><br><span class="line">    		right--;</span><br><span class="line">    		<span class="comment">//从right遍历到left的后一个元素，遍历到的元素与前面的元素对比，小的元素往前推</span></span><br><span class="line">    		<span class="keyword">for</span>(<span class="keyword">int</span> i=right;i&gt;left;i--)</span><br><span class="line">    		&#123;</span><br><span class="line">    			<span class="keyword">if</span>(nums[i]&lt;nums[i-<span class="number">1</span>])</span><br><span class="line">    			&#123;</span><br><span class="line">    				temp=nums[i];</span><br><span class="line">    				nums[i]=nums[i-<span class="number">1</span>];</span><br><span class="line">    				nums[i-<span class="number">1</span>]=temp;</span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125;</span><br><span class="line">    		left++;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
       
         <div class="page-reward">
@@ -276,7 +279,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F1--%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F4--%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -290,15 +293,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F2--%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F1--%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          算法复习之排序2--快速排序
+          软件设计模式1--简单工厂模式
         
       </div>
     </a>
   
+  
+    <a href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F3--%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">算法复习之排序3--选择排序</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -323,7 +331,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解"><span class="toc-number">1.</span> <span class="toc-text">理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">2.</span> <span class="toc-text">代码</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#经典冒泡排序"><span class="toc-number">1.</span> <span class="toc-text">经典冒泡排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解"><span class="toc-number">1.1.</span> <span class="toc-text">理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-number">1.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#双向冒泡排序"><span class="toc-number">2.</span> <span class="toc-text">双向冒泡排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解-1"><span class="toc-number">2.1.</span> <span class="toc-text">理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码-1"><span class="toc-number">2.2.</span> <span class="toc-text">代码</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
