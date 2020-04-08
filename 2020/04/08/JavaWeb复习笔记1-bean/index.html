@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>JavaWeb-bean | kjp的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="applicationContext的获取方法通过ClassPathXmlApplicationContext创建1ApplicationContext appCon&#x3D;new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;); 通过FileSystemXmlApplicationContext创建（这一方法比较少用）1Applica">
+  <meta name="description" content="Bean复习笔记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaWeb-bean">
 <meta property="og:url" content="http://yoursite.com/2020/04/08/JavaWeb%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B01-bean/index.html">
 <meta property="og:site_name" content="kjp的博客">
-<meta property="og:description" content="applicationContext的获取方法通过ClassPathXmlApplicationContext创建1ApplicationContext appCon&#x3D;new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;); 通过FileSystemXmlApplicationContext创建（这一方法比较少用）1Applica">
+<meta property="og:description" content="Bean复习笔记">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-04-08T11:25:00.000Z">
-<meta property="article:modified_time" content="2020-04-08T17:20:12.514Z">
+<meta property="article:modified_time" content="2020-04-08T17:23:30.215Z">
 <meta property="article:author" content="风色的花">
 <meta property="article:tag" content="bean">
 <meta property="article:tag" content="javaweb">
@@ -169,7 +169,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <h2 id="Bean复习笔记"><a href="#Bean复习笔记" class="headerlink" title="Bean复习笔记"></a>Bean复习笔记</h2><a id="more"></a>
 <h2 id="applicationContext的获取方法"><a href="#applicationContext的获取方法" class="headerlink" title="applicationContext的获取方法"></a>applicationContext的获取方法</h2><h3 id="通过ClassPathXmlApplicationContext创建"><a href="#通过ClassPathXmlApplicationContext创建" class="headerlink" title="通过ClassPathXmlApplicationContext创建"></a>通过ClassPathXmlApplicationContext创建</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext appCon=<span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="通过FileSystemXmlApplicationContext创建（这一方法比较少用）"><a href="#通过FileSystemXmlApplicationContext创建（这一方法比较少用）" class="headerlink" title="通过FileSystemXmlApplicationContext创建（这一方法比较少用）"></a>通过FileSystemXmlApplicationContext创建（这一方法比较少用）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext appCon=<span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"(applicationContext.xml文件的绝对路径)"</span>);</span><br></pre></td></tr></table></figure>
 <h3 id="通过Web服务器实例化ApplicationContext容器"><a href="#通过Web服务器实例化ApplicationContext容器" class="headerlink" title="通过Web服务器实例化ApplicationContext容器"></a>通过Web服务器实例化ApplicationContext容器</h3><blockquote>
@@ -403,7 +403,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#applicationContext的获取方法"><span class="toc-number">1.</span> <span class="toc-text">applicationContext的获取方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过ClassPathXmlApplicationContext创建"><span class="toc-number">1.1.</span> <span class="toc-text">通过ClassPathXmlApplicationContext创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过FileSystemXmlApplicationContext创建（这一方法比较少用）"><span class="toc-number">1.2.</span> <span class="toc-text">通过FileSystemXmlApplicationContext创建（这一方法比较少用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过Web服务器实例化ApplicationContext容器"><span class="toc-number">1.3.</span> <span class="toc-text">通过Web服务器实例化ApplicationContext容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入类型"><span class="toc-number">2.</span> <span class="toc-text">依赖注入类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法注入"><span class="toc-number">2.1.</span> <span class="toc-text">构造方法注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖方法注入"><span class="toc-number">2.2.</span> <span class="toc-text">依赖方法注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的实例化"><span class="toc-number">3.</span> <span class="toc-text">bean的实例化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法实例化bean"><span class="toc-number">3.1.</span> <span class="toc-text">构造方法实例化bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态工厂实例化"><span class="toc-number">3.2.</span> <span class="toc-text">静态工厂实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例工厂实例化"><span class="toc-number">3.3.</span> <span class="toc-text">实例工厂实例化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的作用域"><span class="toc-number">4.</span> <span class="toc-text">bean的作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的生命周期"><span class="toc-number">5.</span> <span class="toc-text">bean的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的装配"><span class="toc-number">6.</span> <span class="toc-text">bean的装配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于XML配置的装配"><span class="toc-number">6.1.</span> <span class="toc-text">基于XML配置的装配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#构造方法注入-1"><span class="toc-number">6.1.1.</span> <span class="toc-text">构造方法注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性setter方法注入"><span class="toc-number">6.1.2.</span> <span class="toc-text">属性setter方法注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于注解的装配"><span class="toc-number">6.2.</span> <span class="toc-text">基于注解的装配</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bean复习笔记"><span class="toc-number">1.</span> <span class="toc-text">Bean复习笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#applicationContext的获取方法"><span class="toc-number">2.</span> <span class="toc-text">applicationContext的获取方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过ClassPathXmlApplicationContext创建"><span class="toc-number">2.1.</span> <span class="toc-text">通过ClassPathXmlApplicationContext创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过FileSystemXmlApplicationContext创建（这一方法比较少用）"><span class="toc-number">2.2.</span> <span class="toc-text">通过FileSystemXmlApplicationContext创建（这一方法比较少用）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过Web服务器实例化ApplicationContext容器"><span class="toc-number">2.3.</span> <span class="toc-text">通过Web服务器实例化ApplicationContext容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖注入类型"><span class="toc-number">3.</span> <span class="toc-text">依赖注入类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法注入"><span class="toc-number">3.1.</span> <span class="toc-text">构造方法注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依赖方法注入"><span class="toc-number">3.2.</span> <span class="toc-text">依赖方法注入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的实例化"><span class="toc-number">4.</span> <span class="toc-text">bean的实例化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法实例化bean"><span class="toc-number">4.1.</span> <span class="toc-text">构造方法实例化bean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#静态工厂实例化"><span class="toc-number">4.2.</span> <span class="toc-text">静态工厂实例化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实例工厂实例化"><span class="toc-number">4.3.</span> <span class="toc-text">实例工厂实例化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的作用域"><span class="toc-number">5.</span> <span class="toc-text">bean的作用域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的生命周期"><span class="toc-number">6.</span> <span class="toc-text">bean的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bean的装配"><span class="toc-number">7.</span> <span class="toc-text">bean的装配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于XML配置的装配"><span class="toc-number">7.1.</span> <span class="toc-text">基于XML配置的装配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#构造方法注入-1"><span class="toc-number">7.1.1.</span> <span class="toc-text">构造方法注入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#属性setter方法注入"><span class="toc-number">7.1.2.</span> <span class="toc-text">属性setter方法注入</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于注解的装配"><span class="toc-number">7.2.</span> <span class="toc-text">基于注解的装配</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -524,6 +524,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bean</a>
               </li>
              
@@ -533,14 +541,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">SSM</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
