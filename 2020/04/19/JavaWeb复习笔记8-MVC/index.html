@@ -6,14 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/3 | kjp的博客</title>
+  <title>JavaWeb-Spring MVC | kjp的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="kjp的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/03/page/2/index.html">
+  <meta name="description" content="Springl MVC复习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb-Spring MVC">
+<meta property="og:url" content="http://yoursite.com/2020/04/19/JavaWeb%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B08-MVC/index.html">
 <meta property="og:site_name" content="kjp的博客">
+<meta property="og:description" content="Springl MVC复习笔记">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-19T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-19T14:47:21.286Z">
 <meta property="article:author" content="风色的花">
+<meta property="article:tag" content="javaweb">
+<meta property="article:tag" content="SSM">
+<meta property="article:tag" content="Spring">
+<meta property="article:tag" content="SpringMVC">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="kjp的博客" type="application/atom+xml">
@@ -142,277 +150,273 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JavaWeb复习笔记8-MVC" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaWeb-Spring MVC
+    </h1>
+  
+
+        
+        <a href="/2020/04/19/JavaWeb%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B08-MVC/" class="archive-article-date">
+  	<time datetime="2020-04-19T15:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-19</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Springl-MVC复习笔记"><a href="#Springl-MVC复习笔记" class="headerlink" title="Springl MVC复习笔记"></a>Springl MVC复习笔记</h2><a id="more"></a>
+<h2 id="Spring-MVC工作原理"><a href="#Spring-MVC工作原理" class="headerlink" title="Spring MVC工作原理"></a>Spring MVC工作原理</h2><blockquote>
+<p>1、浏览器发送HTTP请求<br>2、DispatcherServlet接受请求并向HandlerMapping寻找控制器<br>3、调用控制器以调用模型处理业务Service返回模型页面ModelAndView给DispatcherServlet<br>4、视图通过ViewResolver处理映射，并将模型Model里的数据传给视图显示<br>5、HTTP响应</p>
+</blockquote>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><blockquote>
+<p>1、创建web应用并引入jar包（spring包和springmvc包）<br>2、在web.xml中部署DispatcherServlet</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 启动就加载 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/<span class="tag">&lt;/<span class="name">url-pattren</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>初始化springmvc时会在应用程序WEB-INF目录下查找springmvc-servlet.xml的配置文件（查找的名字根据servlet-name元素来规定）<br>创建web应用首页，index，页面里可用<a href="${pageContext.request.contextPath}/login"/>进行跳转，原理是根据/login到springmvc-servlet文件找找到对应的bean即LoginController，再调用LoginController里的handlerRequest方法return对应的页面<br>创建Controller包，里面的类继承Controller，返回ModelAndView类型</p>
+<blockquote>
+<p>可写成return new ModelAndView(“/WEB-INF/jsp/login.jsp”)或者return new ModelAndView(“login”)(此处应配置视图解析器)<br>创建Spring MVC配置文件springmvc-servlet.xml，配置Controller映射信息</p>
+</blockquote>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"/login"</span> <span class="attr">class</span>=<span class="string">"controller.LoginController"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置视图解析器"><a href="#配置视图解析器" class="headerlink" title="配置视图解析器"></a>配置视图解析器</h3><blockquote>
+<p>在springmvc-servlet.xml中配置</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span> <span class="attr">id</span>=<span class="string">"internalResoureceViewResolver"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 相当于加上前缀和后缀 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">values</span>=<span class="string">"/WEB-INF/jsp"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">values</span>=<span class="string">".jsp"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="基于注解的Spring-MVC的Controller"><a href="#基于注解的Spring-MVC的Controller" class="headerlink" title="基于注解的Spring MVC的Controller"></a>基于注解的Spring MVC的Controller</h2><blockquote>
+<p>在基于注解的控制器类中可以编写多个处理方法，减少控制器类的数量<br>不需要在配置文件中部署映射，仅需要使用RequestMapping注释类型注解一个方法进行请求处理</p>
+</blockquote>
+<h3 id="方法级别注解"><a href="#方法级别注解" class="headerlink" title="方法级别注解"></a>方法级别注解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line">pulic <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span></span>&#123;</span><br><span class="line">	<span class="meta">@RequestMapping</span>(values=<span class="string">"/index/login"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="类级别注解方法"><a href="#类级别注解方法" class="headerlink" title="类级别注解方法"></a>类级别注解方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)</span><br><span class="line">pulic <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span></span>&#123;</span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/login"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>两种方法请求路径都为…/index/login</p>
+</blockquote>
+<h3 id="编写请求处理方法"><a href="#编写请求处理方法" class="headerlink" title="编写请求处理方法"></a>编写请求处理方法</h3><blockquote>
+<p>每次调用请求处理方法时，SpringMVC都将创建org.springframework.ui.Model对象，其最常见的返回类型，就是代表逻辑视图名称的String类型,如上代码</p>
+</blockquote>
+<h2 id="Controller接受请求参数的常见方式"><a href="#Controller接受请求参数的常见方式" class="headerlink" title="Controller接受请求参数的常见方式"></a>Controller接受请求参数的常见方式</h2><blockquote>
+<p>如表单通过&lt;form action=”${pageContext.request.contextPath}/user/login”/ method=”post”&gt;传参数过来应如何处理</p>
+</blockquote>
+<h3 id="通过实体bean接收请求参数"><a href="#通过实体bean接收请求参数" class="headerlink" title="通过实体bean接收请求参数"></a>通过实体bean接收请求参数</h3><blockquote>
+<p>通过在注解了/user/login的方法参数中加入接收的类如User类来接收传过来的user表单元素的值（User类成员变量名与表单元素名相同）</p>
+</blockquote>
+<h3 id="通过处理方法的形参接收请求参数"><a href="#通过处理方法的形参接收请求参数" class="headerlink" title="通过处理方法的形参接收请求参数"></a>通过处理方法的形参接收请求参数</h3><blockquote>
+<p>与用bean接收差不多，只是把bean实体里的成员变量放在形参里<br>仅适用于参数较少</p>
+</blockquote>
+<h3 id="通过HttpServletRequest接收请求参数"><a href="#通过HttpServletRequest接收请求参数" class="headerlink" title="通过HttpServletRequest接收请求参数"></a>通过HttpServletRequest接收请求参数</h3><blockquote>
+<p>参数中加入HttpServletRequest request参数<br>适用get和post</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user/login"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(HttpServletRequest request,Model model)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		String uname=request.getParameter(<span class="string">"uname"</span>);</span><br><span class="line">		String upass=request.getParameter(<span class="string">"upass"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-PathVariable接收URL中的请求参数"><a href="#通过-PathVariable接收URL中的请求参数" class="headerlink" title="通过@PathVariable接收URL中的请求参数"></a>通过@PathVariable接收URL中的请求参数</h3><blockquote>
+<p>仅适用get方式</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user/login/&#123;uname&#125;/&#123;upass&#125;"</span>,method=RequestMethod.GET)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(@PathVariable String uname,@PathVariable String upass,Model model)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过-RequestParam接收请求参数"><a href="#通过-RequestParam接收请求参数" class="headerlink" title="通过@RequestParam接收请求参数"></a>通过@RequestParam接收请求参数</h3><blockquote>
+<p>与通过处理方法的形参接收请求参数区别在于，当请求参数与接收参数名不一致时，这个方法会报404错误</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user/login"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(@RequestParam String uname,@RequestParam String upass,Model model)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过-ModelAttribute接收请求参数"><a href="#通过-ModelAttribute接收请求参数" class="headerlink" title="通过@ModelAttribute接收请求参数"></a>通过@ModelAttribute接收请求参数</h3><blockquote>
+<p>适用get和post<br>与通过实体bean接收请求参数区别在于会自动暴露为模型数据用于视图页面展示时使用</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user/login"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">login</span><span class="params">(@ModelAttribute(<span class="string">"user"</span>)</span> UserForm user)</span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		user.getUname();</span><br><span class="line">		<span class="comment">//可以在jsp中以$&#123;user.uname&#125;得到值</span></span><br><span class="line">		<span class="comment">//加上@ModelAttribute注解后，此行可以省略</span></span><br><span class="line">		model.addAttribute(<span class="string">"user"</span>,user);</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"login"</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="重定向和转发"><a href="#重定向和转发" class="headerlink" title="重定向和转发"></a>重定向和转发</h2><blockquote>
+<p>在Spring MVC中控制器类中return语句默认是转发到视图<br>重定向是要重新发送请求到重定向的方法里，客户端行为（浏览器地址变化）<br>转发是当前方法发送请求到转发的方法里，服务器端行为（浏览器地址不变化）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转发到一个请求方法（同一个控制器里，可省略控制器的注解，如此处可省略/index/）</span></span><br><span class="line"><span class="comment">//即写成return "forward:isLogin";</span></span><br><span class="line"><span class="keyword">return</span> <span class="string">"forward:/index/isLogin"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//重定向到一个请求方法</span></span><br><span class="line"><span class="keyword">return</span> <span class="string">"redirect:/index/isRegister"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//转发到一个视图</span></span><br><span class="line"><span class="keyword">return</span> <span class="string">"register"</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="应用-Autowired进行依赖注入"><a href="#应用-Autowired进行依赖注入" class="headerlink" title="应用@Autowired进行依赖注入"></a>应用@Autowired进行依赖注入</h2><blockquote>
+<p>在Spring MVC中为了能被依赖注入类必需注解为@Service（服务），然后在控制器中用@Autowired注入</p>
+</blockquote>
+<h2 id="ModelAttribute"><a href="#ModelAttribute" class="headerlink" title="@ModelAttribute"></a>@ModelAttribute</h2><blockquote>
+<p>绑定请求参数到实体对象（见Controller接受请求参数的常见方式），将请求参数的输入封装到对象中，并把对象，以value值为键值存储在Model对象中，在没写value值时，直接以类名（首字母小写）作为键值<br>注解一个非请求处理方法，被@ModelAttribute注解的方法，将在每次调用该类的请求方法前被调用，可以用来控制登陆权限，直接写在方法前。</p>
+</blockquote>
+
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢打赏<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/Alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F2--%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-23T08:33:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F2--%E5%B7%A5%E5%8E%82%E6%96%B9%E6%B3%95%E6%A8%A1%E5%BC%8F/">软件设计模式2--工厂方法模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">javaweb</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">创建型模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">SSM</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">SpringMVC</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/19/JavaWeb%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B08-MVC/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F1--%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-03-23T07:19:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-23</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/14/JavaWeb%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B07-%E5%8A%A8%E6%80%81sql/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaWeb-动态sql</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/23/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F1--%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">软件设计模式1--简单工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">设计</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">创建型模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Springl-MVC复习笔记"><span class="toc-number">1.</span> <span class="toc-text">Springl MVC复习笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-MVC工作原理"><span class="toc-number">2.</span> <span class="toc-text">Spring MVC工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">3.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置视图解析器"><span class="toc-number">3.1.</span> <span class="toc-text">配置视图解析器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于注解的Spring-MVC的Controller"><span class="toc-number">4.</span> <span class="toc-text">基于注解的Spring MVC的Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法级别注解"><span class="toc-number">4.1.</span> <span class="toc-text">方法级别注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类级别注解方法"><span class="toc-number">4.2.</span> <span class="toc-text">类级别注解方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编写请求处理方法"><span class="toc-number">4.3.</span> <span class="toc-text">编写请求处理方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Controller接受请求参数的常见方式"><span class="toc-number">5.</span> <span class="toc-text">Controller接受请求参数的常见方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通过实体bean接收请求参数"><span class="toc-number">5.1.</span> <span class="toc-text">通过实体bean接收请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过处理方法的形参接收请求参数"><span class="toc-number">5.2.</span> <span class="toc-text">通过处理方法的形参接收请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过HttpServletRequest接收请求参数"><span class="toc-number">5.3.</span> <span class="toc-text">通过HttpServletRequest接收请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过-PathVariable接收URL中的请求参数"><span class="toc-number">5.4.</span> <span class="toc-text">通过@PathVariable接收URL中的请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过-RequestParam接收请求参数"><span class="toc-number">5.5.</span> <span class="toc-text">通过@RequestParam接收请求参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过-ModelAttribute接收请求参数"><span class="toc-number">5.6.</span> <span class="toc-text">通过@ModelAttribute接收请求参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向和转发"><span class="toc-number">6.</span> <span class="toc-text">重定向和转发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用-Autowired进行依赖注入"><span class="toc-number">7.</span> <span class="toc-text">应用@Autowired进行依赖注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ModelAttribute"><span class="toc-number">8.</span> <span class="toc-text">@ModelAttribute</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F4--%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-03-22T07:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F4--%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">算法复习之排序4--冒泡排序</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F3--%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-03-22T06:49:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/22/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F3--%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">算法复习之排序3--选择排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F2--%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-03-21T14:48:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F2--%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">算法复习之排序2--快速排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F1--%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/" class="archive-article-date">
-  	<time datetime="2020-03-21T09:42:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/03/21/%E7%AE%97%E6%B3%95%E5%A4%8D%E4%B9%A0%E4%B9%8B%E6%8E%92%E5%BA%8F1--%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">算法复习之排序1--插入排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">排序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2020/03/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2020/03/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+
+  
+
   
 
 
@@ -442,8 +446,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
